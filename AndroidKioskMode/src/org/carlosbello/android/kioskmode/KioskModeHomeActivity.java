@@ -9,23 +9,22 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 
 /**
- * Actividad base para crear un remplazo de la pantalla "home" del teléfono. 
+ * Base activity to create a replacement for the "home screen" of the phone.
  * @author Carlos Bello
  */
 public class KioskModeHomeActivity extends KioskModeActivity {
 	/**
-	 * Inicializa la actividad, estableciendo el bloqueo del botón de retroceso.
+	 * Initialize the activity, blocking the back button.
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		blockBackButton = true;
-		//registerReceiver(new IncommingCallsReceiver(), new IntentFilter("android.intent.action.PHONE_STATE"));
 	}	
 	
 	/**
-	 * Finaliza la actividad principal y por tanto la aplicación, luego de lo cual inicia
-	 * una actividad "home" distinta a la actual para evitar que ésta se vuelva a cargar.
+	 * Finalize the main activity and the application, after that, launch a different 
+	 * "home" activity, preventing this activity to be reloaded.
 	 */
 	public void closeApp() {
 		finish();
