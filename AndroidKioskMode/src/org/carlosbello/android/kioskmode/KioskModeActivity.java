@@ -7,17 +7,16 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * Actividad de base para crear interfaces en modo kiosko.
- * @author Carlos Bello
+ * Base activity to create interfaces in kiosk-mode.
+ * @author Carlos Bello Pauste
  */
 public class KioskModeActivity extends Activity {
-	/** Indica si deberá desactivarse el uso del botón de retroceso. */
+	/** Indicates if should or not deactivate the back button. */
 	protected boolean blockBackButton = false;
 	
 	/**
-	 * Establece la visualización a pantalla completa para evitar una salida 
-	 * accidental a través de la barra de título o cualquier otro elemento 
-	 * interactivo que no sea nuestra propia interfaz.
+	 * Sets the full screen mode to avoid an accidental exit through the title
+	 * bar or any other interactive element outside of our own interface.
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +27,8 @@ public class KioskModeActivity extends Activity {
 	}
 	
 	/**
-	 * Intercepta los eventos del teclado para evitar la interacción con cualquier  
-	 * elemento que no forme parte de nuestra interfaz, salvo la funcionalidad del
-	 * botón de retroceso, si estuviera habilitado.
+	 * Intercepts the key events to avoid the interaction with any element outside
+	 * our interface, except the back-button, if it's enabled.
 	 */	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event)  {

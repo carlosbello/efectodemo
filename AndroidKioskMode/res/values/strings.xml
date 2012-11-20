@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, AndroidKioskModeActivity!</string>
     <string name="app_name">AndroidKioskMode</string>
-    <string name="mainActivity">Actividad principal</string>
-    <string name="kioskMode">Modo Kiosko</string>
-    <string name="backDesabled">Botón retroceso: desactivado</string>
-    <string name="secondaryActivity">Actividad secundaria</string>
-    <string name="backEnabled">Botón retroceso: activado</string>
-    <string name="goToSecondary">Ir a actividad secundaria</string>
-    <string name="close">Cerrar aplicación</string>
+    <string name="mainActivity">Main activity</string>
+    <string name="kioskMode">Kiosk mode</string>
+    <string name="backDisabled">Back button: disabled</string>
+    <string name="secondaryActivity">Secondary activity</string>
+    <string name="backEnabled">Back button: enabled</string>
+    <string name="goToSecondary">Go to secondary activity</string>
+    <string name="close">Close application</string>
 
 </resources>

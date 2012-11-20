@@ -5,18 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 
 /**
- * Actividad principal que bloquará todas las teclas de hardware para evitar
- * el cierre accidental de la aplicación.
- * Esta actividad deberá ser declarada en el manifiesto como MAIN, LAUNCHER y HOME
- * de modo que, al presionar el botón "home" se muestre esta actividad, en lugar
- * de la pantalla de inicio predeterminada.   
+ * Main activity which will block all the hardware keys to avoid an accidental
+ * application exit.
+ * <p>
+ * This activity should be declared in the manifest as MAIN, LAUNCHER and HOME
+ * in order to show this activity -instead of the default home screen- when the
+ * home-button is pressed.   
  * 
- * @author Carlos Bello
+ * @author Carlos Bello Pauste
  */
 public class MainActivity extends KioskModeHomeActivity {
 	
 	/**
-	 * Inicializa la actividad, estableciendo el bloqueo del botón de retroceso.
+	 * Initializes the activity, blocking the back button and loading
+	 * the layout with navigational buttons
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,14 +27,14 @@ public class MainActivity extends KioskModeHomeActivity {
 	}	
 	
 	/**
-	 * Muestra la actividad secundaria.
+	 * Shows the secondary activity.
 	 */
 	public void goToSecondary(View view) {
 		startActivity(new Intent(MainActivity.this, SecondaryActivity.class));
 	}
 	
 	/**
-	 * Cerrar la aplicación.
+	 * Close the application.
 	 */
 	public void closeApp(View view) {
 		closeApp();

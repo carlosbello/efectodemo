@@ -10,11 +10,11 @@ import android.os.Bundle;
 
 /**
  * Base activity to create a replacement for the "home screen" of the phone.
- * @author Carlos Bello
+ * @author Carlos Bello Pauste
  */
 public class KioskModeHomeActivity extends KioskModeActivity {
 	/**
-	 * Initialize the activity, blocking the back button.
+	 * Initializes the activity, blocking the back button.
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class KioskModeHomeActivity extends KioskModeActivity {
 	}	
 	
 	/**
-	 * Finalize the main activity and the application, after that, launch a different 
+	 * Finalizes the main activity and the application, after that, launch a different 
 	 * "home" activity, preventing this activity to be reloaded.
 	 */
 	public void closeApp() {
@@ -32,12 +32,11 @@ public class KioskModeHomeActivity extends KioskModeActivity {
 	}
 	
 	/**
-	 * Recupera el Intent de una actividad "home", dada su clase y el paquete en el 
-	 * que se encuentra.
+	 * Retrieves the intent related to a "home" activity, given it's class and package.
 	 * 
-	 * @param packageName Nombre del paquete 
-	 * @param name		  Nombre de la clase de la actividad
-	 * @return			  Intent a través del cual podría iniciarse la actividad
+	 * @param packageName Package name. 
+	 * @param name		  Activity class name.
+	 * @return			  Intent through which could be launched the home screen.
 	 */	
 	private Intent getHomeIntent(String packageName, String name) {
 		Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -50,12 +49,14 @@ public class KioskModeHomeActivity extends KioskModeActivity {
 	}
 	
 	/**
-	 * Obtiene la información para ejecutar una palicación home distinta de la actual.
-	 * Si en el sistema no se ha instalado ninguna aplicación "home", además de la actual, 
-	 * se recuperará el launcher de Android. Si existiera alguna otra aplcación "home", 
-	 * se recuperará la primera que se encuentre.
+	 * Retrieve the information to execute a "home" activity distinct to the current.
+	 * <p>
+	 * If in the system there is no extra "home" activity, except the current one,
+	 * the Android launcher should be retrieved. If there are other "home" activities,
+	 * should be retrieved the first different from the current one. 
 	 * 
-	 * @return Intent para ejecutar la actividad home recuperada
+	 * @return Intent to execute the identified "home" activity.
+	 * @
 	 */
 	private Intent getFirstExternalHomeIntent() {
 		Intent intent = null;

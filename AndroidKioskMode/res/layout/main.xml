@@ -14,12 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/kioskMode" />
-
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/backDesabled" />
+        android:text="@string/backDisabled" />
 
         <RelativeLayout
             android:id="@+id/relativeLayout1"

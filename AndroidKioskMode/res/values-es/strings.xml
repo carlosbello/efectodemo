@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidKioskMode</string>
+    <string name="mainActivity">Actividad principal</string>
+    <string name="kioskMode">Modo kiosko</string>
+    <string name="backDisabled">Botón regresar: deshabilitado</string>
+    <string name="secondaryActivity">Actividad secundaria</string>
+    <string name="backEnabled">Botón regresar: habilitado</string>
+    <string name="goToSecondary">Ir a la actividad secundaria</string>
+    <string name="close">Cerrar aplicación</string>
+
+</resources>
