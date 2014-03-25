@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Show client location</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            html, body, #map {
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+
+        <script src="http://openlayers.org/api/2.13.1/OpenLayers.js"></script>
+        <script>
+            var layerOSM = new OpenLayers.Layer.OSM();
+            var layerMarkers = new OpenLayers.Layer.Markers();
+            var map = new OpenLayers.Map({
+                div: 'map',
+                projection: "EPSG:3857",
+                layers: [layerOSM, layerMarkers],
+                zoom: 12,
+                center:  new OpenLayers.LonLat(-3.7025600, 40.4165000).transform('EPSG:4326', 'EPSG:3857')
+            });
+            var geolocate = new OpenLayers.Control.Geolocate({
+                bind: false,
+                geolocationOptions: {
+                    enableHighAccuracy: false,
+                    maximumAge: 0,
+                    timeout: 7000
+                },
+                eventListeners: {
+                    "locationupdated": function(e) {
+                        var lonlat = new OpenLayers.LonLat(e.point.x, e.point.y);
+                        var market = new OpenLayers.Marker(lonlat);
+                        /*
+                        var popup = new OpenLayers.Popup.FramedCloud("Popup", 
+                            e.point, null,
+                            'You are here', 
+                            null,
+                            true
+                        );*/
+                        layerMarkers.addMarker(market);
+                        map.setCenter(lonlat, 16);
+                        //map.addPopup(popup);
+                    },
+                    "locationfailed": function () {
+                        alert('Location detection failed');
+                    }
+                }
+            });
+            map.addControl(geolocate);
+            geolocate.deactivate();
+            geolocate.activate();            
+        </script>
+    </body>
+</html>
