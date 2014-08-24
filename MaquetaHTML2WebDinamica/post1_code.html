@@ -5,24 +5,64 @@
 </head>
     <style>
         #alumnoDestacado { position: relative; width: 300px; max-width: 100%;
-            padding: 7px; border-radius: 5px; background-color: #f0f0f0; }
-        #alumnoDestacado p,
-        #alumnoDestacado h3 {  position: relative; margin: 0 0 0 71px; }
-        #alumnoDestacado img { position: absolute; top: 7px; left: 7px; }
+            border: 0; padding: 7px; border-radius: 5px; background-color: #f0f0f0; }
+        #alumnoDestacado .p,
+        #alumnoDestacado h3 {  position: relative; margin: 0 0 0 71px; 
+            border: 0; padding: 0; }
+        #alumnoDestacado img { position: absolute; top: 7px; left: 7px; 
+            border: 0; padding: 0; }
     </style>
 <body>
-<pre class="prettyprint"><code>&lt;div id="alumnoDestacado">
+    <p>Plantilla de alumno destacado:</p>
+    <pre class="prettyprint"><code>&lt;div id="alumnoDestacado">
 &lt;h3>Nombre del alumno&lt;/h3>
 &lt;img src="img/persona.png" />
 &lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula dictum lectus vel auctor.&lt;/p>
-&lt;/div>
+&lt;/div></code></pre>
+    <p>Resultado obtenido con la planitlla (después de formatearla un poco con CSS):</p>
+    <div id="alumnoDestacado">
+    <h3>Nombre del alumno</h3>
+    <img src="https://raw.githubusercontent.com/carlosbello/efectodemo/master/MaquetaHTML2WebDinamica/img/persona.png" />
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula dictum lectus vel auctor.</p>
+    </div>
+    <p>Ejemplo de estructura de datos JSON con datos del alumno destacado: </p>
+    <pre class="prettyprint"><code>{
+    "nombre": "María López González",
+    "foto": "img/alumnos/maria-lopez-gonzalez.jpg",
+    "motivo": "Galardonada en las Olimpiadas Municipales de Lengua Inglesa"
+}
 </code></pre>
-Cuyo resultado es el siguiente (después de aplicarle algo de CSS):
-<div id="alumnoDestacado">
-<h3>Nombre del alumno</h3>
-<img src="img/persona.png" />
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula dictum lectus vel auctor.</p>
-</div>
+    <p>Plantilla transformada para su actualización desde JavaScript:</p>
+    <pre class="prettyprint"><code>&lt;div id="alumnoDestacado">
+&lt;h3 id="nombre">Nombre del alumno&lt;/h3>
+&lt;img id="foto" src="img/persona.png" />
+&lt;p id="motivo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula dictum lectus vel auctor.&lt;/p>
+&lt;/div></code></pre>
+    <p>Código de la función para actualizar al alumno destacado:</p>
+    <pre class="prettyprint"><code>/**
+* Actualiza los datos de un alumno, en la sección de alumno destacado
+* @param datosAlumno - Objeto con los datos del alumno: nombre, foto y motivo
+*/
+function actualizarAlumnoDescatado(datosAlumno) {
+    $('#nombre').text(datosAlumno.nombre);
+    $('#foto').attr('src', datosAlumno.foto);
+    $('#motivo').text(datosAlumno.motivo);
+}</code></pre>
+    <p>Función para cargar los datos y solicitar la actualizarción de la interfaz:</p>
+    <pre class="prettyprint"><code>/**
+* Carga los datos del alumno destacado y actualiza la interfaz 
+* con los datos cargados
+*/
+function cargarAlumnoDestacado() {
+    var url = "api/alumnoDestacado";
+    $.getJSON(url, function (result) {
+        if (result) {
+            actualizarAlumnoDestacado(result);
+        }
+    });
+}</code></pre>
+    <p>Llamada a la función de carga de datos, una vez ha terminado la carga de la página:</p>
+    <pre class="prettyprint"><code>$(document).ready(cargarAlumnoDestacado);</code></pre>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js" type="text/javascript"></script>
 </body>
