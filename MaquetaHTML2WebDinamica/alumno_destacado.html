@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web de "Alumno destacado"</title>
+    <style>
+        #alumnoDestacado { position: relative; width: 300px; max-width: 100%; min-height: 64px;
+            border: 0; padding: 7px; border-radius: 5px; background-color: #f0f0f0; }
+        #alumnoDestacado p,
+        #alumnoDestacado h3 {  position: relative; margin: 0 0 0 71px; 
+            border: 0; padding: 0; }
+        #alumnoDestacado img { position: absolute; top: 7px; left: 7px; 
+            border: 0; padding: 0; }
+    </style>
+</head>
+<body>
+    <div id="alumnoDestacado">
+    <h3 id="nombre">Nombre del alumno</h3>
+    <img id="foto" src="img/persona.png" />
+    <p id="motivo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula dictum lectus vel auctor.</p>
+    </div>
+
+    <!-- jQuery: requerido para manipular el DOM y hacer las peticiones Ajax -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Ver en el archivo js/alumno_destacado.js el código para mostrar los datos descargados -->
+    <script src="js/alumno_destacado.js"></script>        
+</body>
+</html>

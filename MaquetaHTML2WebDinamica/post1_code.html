@@ -4,7 +4,7 @@
 	<title>Códigos utilizados en el "Convertir una maqueta en HTML en una página Web con contenido dinámico (I)"</title>
 </head>
     <style>
-        #alumnoDestacado { position: relative; width: 300px; max-width: 100%;
+        #alumnoDestacado { position: relative; width: 300px; max-width: 100%; min-height: 64px;
             border: 0; padding: 7px; border-radius: 5px; background-color: #f0f0f0; }
         #alumnoDestacado .p,
         #alumnoDestacado h3 {  position: relative; margin: 0 0 0 71px; 
@@ -23,7 +23,7 @@
     <div id="alumnoDestacado">
     <h3>Nombre del alumno</h3>
     <img src="https://raw.githubusercontent.com/carlosbello/efectodemo/master/MaquetaHTML2WebDinamica/img/persona.png" />
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula dictum lectus vel auctor.</p>
+    <div class="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vehicula dictum lectus vel auctor.</div>
     </div>
     <p>Ejemplo de estructura de datos JSON con datos del alumno destacado: </p>
     <pre class="prettyprint"><code>{
@@ -43,7 +43,7 @@
 * Actualiza los datos de un alumno, en la sección de alumno destacado
 * @param datosAlumno - Objeto con los datos del alumno: nombre, foto y motivo
 */
-function actualizarAlumnoDescatado(datosAlumno) {
+function actualizarAlumnoDestacado(datosAlumno) {
     $('#nombre').text(datosAlumno.nombre);
     $('#foto').attr('src', datosAlumno.foto);
     $('#motivo').text(datosAlumno.motivo);
