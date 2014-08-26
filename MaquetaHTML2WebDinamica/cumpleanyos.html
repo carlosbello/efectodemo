@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maqueta de listado de personas que cumplen años un día determinado</title>
+    <style>
+        #cumples ul { list-style: none; padding-left: 0; }
+        #cumples li { display: inline-block; width: 64px; padding: 7px; 
+            background-color: #f0f0f0; border-radius: 5px; }
+        #cumples label { text-overflow: ellipsis; height: 2.5em; 
+            overflow: hidden; display: inline-block}
+    </style>
+</head>
+<body>
+    <div id="cumples">
+        <input id="fecha" type="date"> <button id="buscar">Buscar</button>
+        <ul id="alumnos">
+        </ul>
+        <script id="plantillaAlumno" type="text/html">
+            <li><img src="{{foto}}"><label>{{nombre}}</label></li>
+        </script>
+    </div>
+    
+    <!-- jQuery: requerido para manipular el DOM y hacer las peticiones Ajax -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Ver en el archivo js/cumpleanyos.js el código para mostrar la lista de alumnos que cumplen años -->
+    <script src="js/cumpleanyos.js"></script>  
+</body>
+</html>
