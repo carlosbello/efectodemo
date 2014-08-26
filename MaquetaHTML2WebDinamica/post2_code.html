@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Códigos utilizados en el "Convertir una maqueta en HTML en una página Web con contenido dinámico (2)"</title>
+</head>
+    <style>
+        #cumples ul { list-style: none; padding-left: 0; }
+        #cumples li { display: inline-block; width: 64px; padding: 7px; 
+            background-color: #f0f0f0; border-radius: 5px; }
+        #cumples label { text-overflow: ellipsis; height: 2.5em; 
+            overflow: hidden; display: inline-block}
+        #cumples img { border: 0; padding: 0; }
+    </style>
+<body>
+    <p>Plantilla de lista de alumnos que cumplen años:</p>
+    <pre class="prettyprint"><code>&lt;div id="cumples">
+    &lt;input type="date"> &lt;button>Buscar&lt;/button>
+    &lt;ul>
+        &lt;li>
+            &lt;img src="img/persona.png">
+            &lt;label>Juan Pérez&lt;/label>
+        &lt;/li>
+        &lt;li>
+            &lt;img src="img/persona.png">
+            &lt;label>Manuel López&lt;/label>
+        &lt;/li>
+        &lt;li>
+            &lt;img src="img/persona.png">
+            &lt;label>María González Gurrierrez&lt;/label>
+            &lt;/li>
+        &lt;li>
+            &lt;img src="img/persona.png">
+            &lt;label>Clara Martínez&lt;/label>
+            &lt;/li>
+        &lt;li>
+            &lt;img src="img/persona.png">
+            &lt;label>Julián del Corral&lt;/label>
+        &lt;/li>
+    &lt;/ul>
+&lt;/div></code></pre>
+    <p>Resultado obtenido con la planitlla (después de formatearla un poco con CSS):</p>
+    <div id="cumples">
+        <input type="date"> <button>Buscar</button>
+        <ul>
+            <li>
+                <img src="http://carlosbello.github.io/efectodemo/MaquetaHTML2WebDinamica/img/persona.png">
+                <label>Juan Pérez</label>
+            </li>
+            <li>
+                <img src="http://carlosbello.github.io/efectodemo/MaquetaHTML2WebDinamica/img/persona.png">
+                <label>Manuel López</label>
+            </li>
+            <li>
+                <img src="http://carlosbello.github.io/efectodemo/MaquetaHTML2WebDinamica/img/persona.png">
+                <label>María González Gurrierrez</label>
+            </li>
+            <li>
+                <img src="http://carlosbello.github.io/efectodemo/MaquetaHTML2WebDinamica/img/persona.png">
+                <label>Clara Martínez</label>
+            </li>
+            <li>
+                <img src="http://carlosbello.github.io/efectodemo/MaquetaHTML2WebDinamica/img/persona.png">
+                <label>Julián del Corral</label>
+            </li>
+        </ul>
+    </div>
+    <p>Ejemplo de estructura de datos JSON con datos de los alumnos que cumplen años: </p>
+    <pre class="prettyprint"><code>[
+    {
+        "nombre": "María López González",
+        "foto": "img/alumnos/maria_lopez.jpg"
+    },
+    {
+        "nombre": "Juan Pérez González",
+        "foto": "img/alumnos/juan_perez.jpg"
+    },
+    {
+        "nombre": "Laura Gutierrez Pérez",
+        "foto": "img/alumnos/laura_gutierrez.jpg"
+    }
+]</code></pre>
+    <p>Sección de datos que se repiten:</p>
+    <pre class="prettyprint"><code>&lt;li>
+    &lt;img src="img/persona.png">
+    &lt;label>Juan Pérez&lt;/label>
+&lt;/li>
+&lt;li>
+    &lt;img src="img/persona.png">
+    &lt;label>Manuel López&lt;/label>
+&lt;/li>
+&lt;li>
+    &lt;img src="img/persona.png">
+    &lt;label>María González Gurrierrez&lt;/label>
+&lt;/li>
+&lt;!-- ... --></code></pre>
+    <p>Eliminar datos repetidos, excepto el primero:</p>
+    <pre class="prettyprint"><code>&lt;ul>
+    &lt;li>
+        &lt;img src="img/persona.png">
+        &lt;label>Juan Pérez&lt;/label>
+    &lt;/li>
+&lt;/ul></code></pre>
+    <p>Elemento agrupador identificado:</p>
+    <pre class="prettyprint"><code>&lt;ul id="alumnos">
+    &lt;li>
+        &lt;img src="img/persona.png">
+        &lt;label>Juan Pérez&lt;/label>
+    &lt;/li>
+&lt;/ul></code></pre>
+    <p>Añadir bloque script</p>
+    <pre class="prettyprint"><code>&lt;ul id="alumnos">
+    &lt;li>
+        &lt;img src="img/persona.png">
+        &lt;label>Juan Pérez&lt;/label>
+    &lt;/li>
+&lt;/ul>
+&lt;script id="plantillaAlumno" type="text/html">
+&lt;/script>
+</code></pre>
+    <p>Elemento repetitivo movido a bloque script:</p>
+    <pre class="prettyprint"><code>&lt;ul id="alumnos">
+    &lt;li>
+    &lt;/li>
+&lt;/ul>
+&lt;script id="plantillaAlumno" type="text/html">
+    &lt;img src="img/persona.png">
+    &lt;label>Juan Pérez&lt;/label>
+&lt;/script>
+</code></pre>
+    <p>Plantilla transformada para su actualización desde JavaScript:</p>
+    <pre class="prettyprint"><code>&lt;div id="cumples">
+    &lt;input id="fecha" type="date"> &lt;button id="buscar">Buscar&lt;/button>
+    &lt;ul id="alumnos">
+    &lt;/ul>
+    &lt;script id="plantillaAlumno" type="text/html">
+        &lt;li>
+            &lt;img src="{{foto}}">
+            &lt;label>{{nombre}}&lt;/label>
+        &lt;/li>
+    &lt;/script>
+&lt;/div></code></pre>
+    <p>Extracción de la plantilla:</p>
+    <pre class="prettyprint"><code>var plantillaAlumno = $('#plantillaAlumno').html();</code></pre>
+    <p>Código de la función para transformar una plantilla:</p>
+    <pre class="prettyprint"><code>/**
+ * Genera código HTML a partir de una plantilla y datos de sustitución
+ * @param {string} pantilla - Cadena con la plantilla HTML
+ * @param {Object} datos - Diccionario de nombres de datos a remplazar 
+ *      con su respectivo valor
+ */
+function generarHtml(plantilla, datos) {
+    var html = plantilla;                   // Inicializar el HTML
+    var nombresDeDatos = Object.keys(datos);// Obtener lista de datos a remplazar
+    nombresDeDatos.forEach(function (nombreDato) {  // Por cada dato a remplazar:
+        var nombre = new RegExp('{{' + nombreDato + '}}', 'g'); // Obtener nombre
+        var valor = datos[nombreDato];              // Obtener valor de remplazo
+        html = html.replace(nombre, valor);         // Remplazar nombre por valor
+    });
+    return html;                                    // Devolver HTML generado
+}</code></pre>
+    <p>Función para insertar el HTML generado con los datos de cada alumno:</p>
+    <pre class="prettyprint"><code>/**
+ * Actualiza la lista de alumnos cuyo cumpleaño coincide con la fecha indicada
+ * @param {object[]} listaAlumnos - Lista de objetos con los datos de los
+ *      alumnos: nombre y foto
+ */
+function actualizarListaAlumnos(listaAlumnos) {
+    $('#alumnos').html('');                  // Inicializar la lista HTML
+    listaAlumnos.forEach(function (alumno) { // Por cada alumno:
+        var html = generarHtml(plantillaAlumno, alumno); // Generar su HTML
+        $('#alumnos').append(html);          // Añadir el HTML generado a la Web
+    });
+}</code></pre>
+    <p>Función para cargar los datos y solicitar la actualizarción de la interfaz:</p>
+    <pre class="prettyprint"><code>/**
+ * Carga la lista de alumnos que cumplen años y actualiza la interfaz 
+ * con los datos cargados
+ */
+function cargarCumpleanyos() {
+    var fecha = $('#fecha').val();          // Obtener fecha de consulta
+    var url = '/api/cumpleanyos/' + fecha;  // Generar Url de consulta
+    $.getJSON(url, function (result) {      // Solicitar lista de alumnos
+        if (result) {                       // Si se obtiene alguna lista
+            actualizarListaAlumnos(result); // Actualizar lista de alumnos
+        }
+    });
+}</code></pre>
+    <p>Llamada a la función de carga de datos, después de pulsar el botón de búsqueda:</p>
+    <pre class="prettyprint"><code>$('#buscar').click(cargarCumpleanyos);</code></pre>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js" type="text/javascript"></script>
+</body>
+</html>
