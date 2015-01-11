@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Show client location</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            html, body, #map {
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script>
+        var map,
+            infowindow;
+        
+        function requestClientLocation() {
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        var pos = new google.maps.LatLng(position.coords.latitude,
+                            position.coords.longitude);
+
+                        map.setCenter(pos);
+                        var marker = new google.maps.Marker({
+                            position: pos,
+                            map: map
+                        });
+                        infowindow = new google.maps.InfoWindow({
+                            content: 'You are here.'
+                        });
+                        infowindow.open(map, marker);
+                        google.maps.event.addListener(marker, 'click', function () {
+                            infowindow.open(map, marker);
+                        });
+                    },
+                    function () {
+                        alert(':( Sorry but the geolocation failed');
+                    }
+                );
+            } else {
+                alert("Browser doesn't support Geolocation");
+            }
+        }
+        
+        function initMap() {
+            var mapOptions = {
+                zoom: 16,
+                center: new google.maps.LatLng(40.4165000, -3.7025600)
+            };
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            requestClientLocation();
+        }
+
+        google.maps.event.addDomListener(window, 'load', initMap);
+        </script>
+    </body>
+</html>
