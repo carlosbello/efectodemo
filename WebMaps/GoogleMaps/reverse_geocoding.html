@@ -42,6 +42,7 @@
             infowindow.setContent(JSON.stringify(latLng));
             infowindow.open(map, marker);
             codeLatLng(latLng);
+            map.panTo(latLng);
         }
         
         function codeLatLng(latLng) {
