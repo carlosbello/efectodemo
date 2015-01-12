@@ -22,13 +22,37 @@
 
         <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script>
-            var map;
+        var map,
+            infowindow,
+            marker;
+        
+        function showLocation(latLng, map) {
+            if (!marker) {
+                marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                });
+            } else {
+                marker.setPosition(latLng);
+            }
+            infowindow.open(map, marker);
+        }
+        
         function initMap() {
             var mapOptions = {
                 zoom: 16,
                 center: new google.maps.LatLng(40.4165000, -3.7025600)
             };
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            google.maps.event.addListener(map, 'click', function(e) {
+                showLocation(e.latLng, map);
+            });
+            infowindow = new google.maps.InfoWindow({
+                content: 'Clicked.'
+            });
         }
 
         google.maps.event.addDomListener(window, 'load', initMap);        </script>
