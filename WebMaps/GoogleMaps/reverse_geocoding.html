@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Reverse Geocoding</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+        <style>
+            html, body { padding: 0; margin: 0; }
+            html, body, #map { height: 100%; }
+            #pnlInstructions { position: absolute; left: 90px; top: 15px; background-color: #fff; padding: 10px; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.65); border-radius: 4px; margin-right: 5px; }
+            #pnlInstructions h2 { margin: 0; }
+        </style>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <div id="pnlInstructions">
+            <h2>Instructions</h2>
+            Click on the map to pan to this zone and get the location addres.
+        </div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script>
+            var map;
+        function initMap() {
+            var mapOptions = {
+                zoom: 16,
+                center: new google.maps.LatLng(40.4165000, -3.7025600)
+            };
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initMap);        </script>
+    </body>
+</html>
