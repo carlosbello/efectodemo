@@ -49,7 +49,7 @@
             geocoder.geocode({'latLng': latLng}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 if (results[1]) {
-                  infowindow.setContent(results[1].formatted_address);
+                  infowindow.setContent(results[0].formatted_address);
                 } else {
                   alert('No results found');
                 }
