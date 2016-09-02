@@ -48,7 +48,7 @@
         function codeLatLng(latLng) {
             geocoder.geocode({'latLng': latLng}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
+                if (results) {
                   infowindow.setContent(results[0].formatted_address);
                 } else {
                   alert('No results found');
