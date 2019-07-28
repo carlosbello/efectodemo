@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Back override to a different page in the same domain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            // Save the current history state
+            var currentPage = window.location.pathname;
+            var currentState = window.history.state;
+
+            // Create an artificial history state to generate the redirection
+            window.history.replaceState(currentState, 'Change history to same domain', '/same-domain-destination.html');
+
+            // Restore the history state and the path in the browser nav bar
+            window.history.pushState(currentState, 'Back override to a different page in the same domain', currentPage);
+
+            // Listen to the navigation back event to perform the redirection
+            window.onpopstate = function(event) {
+                // Load the "current" page shown in the nav bar
+                document.location.reload();
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Back override to a different page in the same domain</h1>
+        <p>
+            This page modifies the history to make the back button redirect to a page
+            different from the original referrer page.
+        </p>
+        <p>
+            Press back button to beredirected to <em>same-domain-destination.html</em>
+            instead of <em>index.html</em>.
+        </p>
+    </body>
+</html>

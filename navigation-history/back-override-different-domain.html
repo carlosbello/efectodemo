@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Back override to a different domain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            // Save the current history state
+            var currentPage = window.location.pathname;
+            var currentState = window.history.state;
+
+            // Create an artificial history state to generate the redirection
+            window.history.replaceState(
+                // The page where you want to redirect the user when the back button is pressed
+                { redirect: 'https://www.linkedin.com/in/carlosbello' },
+                // Any name. This is not relevant
+                'Change history to a different domain',
+                // Any page name you want to show in the nav bar during the redirection. The page doesn't have to exist
+                '/redirecting.html'
+            );
+
+            // Restore the history state and the path in the browser nav bar
+            window.history.pushState(currentState, 'Back override to a different domain', currentPage);
+
+            // Listen to the navigation back event to perform the redirection
+            window.onpopstate = function(event) {
+                // Show progress during redirection
+                document.getElementById('explanation').style.display = 'none';
+                document.getElementById('redirection').style.display = 'block';
+                // Redirect
+                document.location.replace(event.state.redirect);
+            };
+        </script>
+    </head>
+    <body>
+        <section id="explanation">
+            <h1>Back override to a different domain</h1>
+            <p>
+                This page modifies the history to make the back button redirect to a page
+                in a domain different from the original referrer page.
+            </p>
+            <p>
+                Press the back button to be redirected to <em>linkedin.com</em> instead of
+                <em>index.html</em>.
+            </p>
+        </section>
+
+        <section id="redirection" style="display: none">
+            Redirecting ...
+        </section>
+    </body>
+</html>
