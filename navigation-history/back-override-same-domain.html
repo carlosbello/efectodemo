@@ -15,10 +15,10 @@
             window.history.pushState(currentState, 'Back override to a different page in the same domain', currentPage);
 
             // Listen to the navigation back event to perform the redirection
-            window.onpopstate = function (event) {
+            window.addEventListener('popstate', function (event) {
                 // Load the "current" page shown in the nav bar
                 document.location.reload();
-            };
+            });
         </script>
     </head>
     <body>

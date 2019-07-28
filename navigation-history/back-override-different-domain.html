@@ -22,13 +22,13 @@
             window.history.pushState(currentState, 'Back override to a different domain', currentPage);
 
             // Listen to the navigation back event to perform the redirection
-            window.onpopstate = function (event) {
+            window.addEventListener('popstate', function (event) {
                 // Show progress during redirection
                 document.getElementById('explanation').style.display = 'none';
                 document.getElementById('redirection').style.display = 'block';
                 // Redirect
                 document.location.replace(event.state.redirect);
-            };
+            });
         </script>
     </head>
     <body>
