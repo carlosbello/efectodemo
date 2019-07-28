@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
             // Save the current history state
-            var currentPage = window.location.pathname;
-            var currentState = window.history.state;
+            const currentPage = window.location.pathname;
+            const currentState = window.history.state;
 
             // Create an artificial history state to generate the redirection
             window.history.replaceState(
@@ -15,14 +15,14 @@
                 // Any name. This is not relevant
                 'Change history to a different domain',
                 // Any page name you want to show in the nav bar during the redirection. The page doesn't have to exist
-                '/redirecting.html'
+                'redirecting.html'
             );
 
             // Restore the history state and the path in the browser nav bar
             window.history.pushState(currentState, 'Back override to a different domain', currentPage);
 
             // Listen to the navigation back event to perform the redirection
-            window.onpopstate = function(event) {
+            window.onpopstate = event => {
                 // Show progress during redirection
                 document.getElementById('explanation').style.display = 'none';
                 document.getElementById('redirection').style.display = 'block';

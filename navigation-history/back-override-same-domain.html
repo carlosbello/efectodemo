@@ -5,17 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
             // Save the current history state
-            var currentPage = window.location.pathname;
-            var currentState = window.history.state;
+            const currentPage = window.location.pathname;
+            const currentState = window.history.state;
 
             // Create an artificial history state to generate the redirection
-            window.history.replaceState(currentState, 'Change history to same domain', '/same-domain-destination.html');
+            window.history.replaceState(currentState, 'Change history to same domain', 'same-domain-destination.html');
 
             // Restore the history state and the path in the browser nav bar
             window.history.pushState(currentState, 'Back override to a different page in the same domain', currentPage);
 
             // Listen to the navigation back event to perform the redirection
-            window.onpopstate = function(event) {
+            window.onpopstate = event => {
                 // Load the "current" page shown in the nav bar
                 document.location.reload();
             };
@@ -28,7 +28,7 @@
             different from the original referrer page.
         </p>
         <p>
-            Press back button to beredirected to <em>same-domain-destination.html</em>
+            Press back button to be redirected to <em>same-domain-destination.html</em>
             instead of <em>index.html</em>.
         </p>
     </body>
