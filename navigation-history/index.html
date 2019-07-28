@@ -4,12 +4,12 @@
         <title>Navigation history demo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
-            const {pathname, search, hash} = document.location;
+            var path = document.location.pathname;
             // Just for demostration purposes, we want to force showing the index.html page name in the nav bar
-            if (!pathname.match('\/index.html(\\?.*)?$')) {
-                const separator = pathname.endsWith('/') ? '' : '/';
-                const url = `${pathname}${separator}index.html${search}${hash}`;
-                window.history.replaceState(window.history.state, 'Navigation history demo', url);
+            if (!path.match("\/index.html(\\?.*)?$")) {
+                var separator = path.slice(-1) == '/' ? '' : '/';
+                var url = path + separator + 'index.html' + document.location.search + document.location.hash;
+                window.history.replaceState(window.history.state, "Navigation history demo", url);
             }
         </script>
     </head>

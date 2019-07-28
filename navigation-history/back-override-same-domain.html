@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script>
             // Save the current history state
-            const currentPage = window.location.pathname;
-            const currentState = window.history.state;
+            var currentPage = window.location.pathname;
+            var currentState = window.history.state;
 
             // Create an artificial history state to generate the redirection
             window.history.replaceState(currentState, 'Change history to same domain', 'same-domain-destination.html');
@@ -15,7 +15,7 @@
             window.history.pushState(currentState, 'Back override to a different page in the same domain', currentPage);
 
             // Listen to the navigation back event to perform the redirection
-            window.onpopstate = event => {
+            window.onpopstate = function (event) {
                 // Load the "current" page shown in the nav bar
                 document.location.reload();
             };
