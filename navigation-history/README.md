@@ -13,7 +13,7 @@ If you want to se it *sadly failing* open [this link](http://carlosbello.github.
 [Natural history behavior](back.html)
 When the back navigation button is pressed, the browser renders the navigation demo page.
 
-[Back override to a different page in the same domain](back-override-same-domain-with-gesture.html)
+[Back override to a different page in the same domain](back-override-same-domain.html)
 When the back navigation button is pressed, the browser redirects to a different page *in the current* domain
 
 [Back override to a different domain](back-override-different-domain.html)
